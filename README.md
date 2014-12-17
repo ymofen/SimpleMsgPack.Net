@@ -23,42 +23,42 @@ Works with
 ### Code Example
 ```C#
 
-MsgPack msgpack = new MsgPack();
-            msgpack.ForcePathObject("p.name").AsString = "张三";
-            msgpack.ForcePathObject("p.age").AsInteger = 25;
-            msgpack.ForcePathObject("p.datas").AsArray.Add(90);
-            msgpack.ForcePathObject("p.datas").AsArray.Add(80);
-            msgpack.ForcePathObject("p.datas").AsArray.Add("李四");
-            msgpack.ForcePathObject("p.datas").AsArray.Add(3.1415926);
+    MsgPack msgpack = new MsgPack();
+    msgpack.ForcePathObject("p.name").AsString = "张三";
+    msgpack.ForcePathObject("p.age").AsInteger = 25;
+    msgpack.ForcePathObject("p.datas").AsArray.Add(90);
+    msgpack.ForcePathObject("p.datas").AsArray.Add(80);
+    msgpack.ForcePathObject("p.datas").AsArray.Add("李四");
+    msgpack.ForcePathObject("p.datas").AsArray.Add(3.1415926);
 
-            // pack file
-            msgpack.ForcePathObject("p.filedata").LoadFileAsBytes("C:\\a.png");
+    // pack file
+    msgpack.ForcePathObject("p.filedata").LoadFileAsBytes("C:\\a.png");
 
-            // pack msgPack binary
-            byte[] packData = msgpack.Encode2Bytes();
+    // pack msgPack binary
+    byte[] packData = msgpack.Encode2Bytes();
 
-            MsgPack unpack_msgpack = new MsgPack();
-			
-            // unpack msgpack
-            unpack_msgpack.DecodeFromBytes(packData);
+    MsgPack unpack_msgpack = new MsgPack();
+	
+    // unpack msgpack
+    unpack_msgpack.DecodeFromBytes(packData);
 
-            System.Console.WriteLine("name:{0}, age:{1}",
-                  unpack_msgpack.ForcePathObject("p.name").AsString,
-                  unpack_msgpack.ForcePathObject("p.age").AsInteger);
+    System.Console.WriteLine("name:{0}, age:{1}",
+          unpack_msgpack.ForcePathObject("p.name").AsString,
+          unpack_msgpack.ForcePathObject("p.age").AsInteger);
 
-            Console.WriteLine("==================================");
-            System.Console.WriteLine("use index property, Length{0}:{1}",
-                  unpack_msgpack.ForcePathObject("p.datas").AsArray.Length,
-                  unpack_msgpack.ForcePathObject("p.datas").AsArray[0].AsString
-                  );
+    Console.WriteLine("==================================");
+    System.Console.WriteLine("use index property, Length{0}:{1}",
+          unpack_msgpack.ForcePathObject("p.datas").AsArray.Length,
+          unpack_msgpack.ForcePathObject("p.datas").AsArray[0].AsString
+          );
 
-            Console.WriteLine("==================================");
-            Console.WriteLine("use foreach statement:");
-            foreach (MsgPack item in unpack_msgpack.ForcePathObject("p.datas"))
-            {
-                Console.WriteLine(item.AsString);
-            }
+    Console.WriteLine("==================================");
+    Console.WriteLine("use foreach statement:");
+    foreach (MsgPack item in unpack_msgpack.ForcePathObject("p.datas"))
+    {
+        Console.WriteLine(item.AsString);
+    }
 
-            // unpack filedata 
-            unpack_msgpack.ForcePathObject("p.filedata").SaveBytesToFile("C:\\b.png");
-            Console.Read();
+    // unpack filedata 
+    unpack_msgpack.ForcePathObject("p.filedata").SaveBytesToFile("C:\\b.png");
+    Console.Read();
