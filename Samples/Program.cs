@@ -37,13 +37,13 @@ namespace SimpleMsgPackTester
 
             Console.WriteLine("==================================");
             System.Console.WriteLine("use index property, Length{0}:{1}",
-                  msgpack.ForcePathObject("p.datas").AsArray.Length,
-                  msgpack.ForcePathObject("p.datas").AsArray[0].AsString
+                  unpack_msgpack.ForcePathObject("p.datas").AsArray.Length,
+                  unpack_msgpack.ForcePathObject("p.datas").AsArray[0].AsString
                   );
 
             Console.WriteLine("==================================");
             Console.WriteLine("use foreach statement:");
-            foreach (MsgPack item in msgpack.ForcePathObject("p.datas"))
+            foreach (MsgPack item in unpack_msgpack.ForcePathObject("p.datas"))
             {
                 Console.WriteLine(item.AsString);
             }

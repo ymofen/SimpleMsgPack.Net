@@ -48,7 +48,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleMsgPack\SimpleMsgPack.csproj">
+    <ProjectReference Include="..\Source\SimpleMsgPack.csproj">
       <Project>{53ced7af-bcf5-453d-ac00-36247752eba8}</Project>
       <Name>SimpleMsgPack</Name>
     </ProjectReference>

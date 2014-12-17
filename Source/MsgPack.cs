@@ -486,7 +486,7 @@ namespace SimpleMsgPack
                 //fixmap	1000xxxx	0x80 - 0x8f
                 this.Clear();
                 this.valueType = MsgPackType.Array;
-                len = lvByte - 0x80;
+                len = lvByte - 0x90;
                 for (i = 0; i < len; i++)
                 {
                     msgPack = InnerAdd();
