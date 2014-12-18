@@ -3,6 +3,7 @@ SimpleMsgPack.Net
 
 MessagePack implementation for C# / msgpack.org[C#] 
 
+Binary files distributed via the NuGet package [SimpleMsgPack](http://www.nuget.org/packages/SimpleMsgPack/).
 
 It's like JSON but small and fast.
 
