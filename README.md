@@ -8,11 +8,11 @@ It's like JSON but small and fast.
 
 ```
 unit Owner: D10.Mofen
-contract:
+contact:
        qq:185511468, 
     email:ymofen@diocp.org
 	homepage:www.diocp.org
-welcome to report bug
+if you find any bug, please contact me!
 ```
 
 Works with
