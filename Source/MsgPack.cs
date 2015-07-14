@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ * 添加DecodeFormFile函数
+ *   2015-07-14 16:31:32
+ *   
+ * 修复ForcePathObject查找不到子对象的bug,感谢(Putree  274638001<spiritring@gmail.com>)反馈
+ *   2015-07-14 16:32:13 
+ *   
+ * 修复整数值为127时解码出来为0的情况,感谢(Putree  274638001<spiritring@gmail.com>)反馈
+ *   2015-07-14 15:28:45
+ */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -379,7 +389,7 @@ namespace SimpleMsgPack
                 for (int i = 0; i < pathList.Length - 1; i++)
                 {
                     tmp = pathList[i];
-                    tmpObject = FindObject(tmp);
+                    tmpObject = tmpParent.FindObject(tmp);
                     if (tmpObject == null)
                     {
                         tmpParent = tmpParent.InnerAddMapChild();
@@ -456,6 +466,15 @@ namespace SimpleMsgPack
             ms.Position = 0;
             DecodeFromStream(ms);
         }
+
+        public void DecodeFromFile(string fileName)
+        {
+            FileStream fs = new FileStream(fileName, FileMode.Open);
+            DecodeFromStream(fs);
+            fs.Dispose();
+        }
+            
+
 
         public void DecodeFromStream(Stream ms)
         {            

@@ -1,6 +1,7 @@
 ﻿using SimpleMsgPack;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,13 @@ namespace SimpleMsgPackTester
     {
         static void Main(string[] args)
         {
+              
+            //MsgPack simp = new MsgPack();
+            //simp.DecodeFromFile("E:\\1.msgpack");
+            //Console.WriteLine(simp.ForcePathObject("User.DB.System.DUID").AsInteger);
+            //Console.ReadLine();
+   
+
             MsgPack msgpack = new MsgPack();
             msgpack.ForcePathObject("p.name").AsString = "张三";
             msgpack.ForcePathObject("p.age").AsInteger = 25;
@@ -18,6 +26,7 @@ namespace SimpleMsgPackTester
             msgpack.ForcePathObject("p.datas").AsArray.Add(80);
             msgpack.ForcePathObject("p.datas").AsArray.Add("李四");
             msgpack.ForcePathObject("p.datas").AsArray.Add(3.1415926);
+            msgpack.ForcePathObject("Game.iGameID").AsInteger = 1;
 
             // 可以直接打包文件数据
             // msgpack.ForcePathObject("p.filedata").LoadFileAsBytes("C:\\a.png");
@@ -47,6 +56,8 @@ namespace SimpleMsgPackTester
             {
                 Console.WriteLine(item.AsString);
             }
+
+            Console.WriteLine(unpack_msgpack.ForcePathObject("Game.iGameID").AsInteger);
 
             // unpack filedata 
             //unpack_msgpack.ForcePathObject("p.filedata").SaveBytesToFile("C:\\b.png");
