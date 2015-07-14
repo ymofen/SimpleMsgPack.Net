@@ -465,7 +465,7 @@ namespace SimpleMsgPack
             int len = 0;
             int i = 0;
             
-            if (lvByte <0x7F)
+            if (lvByte <= 0x7F)
             {   //positive fixint	0xxxxxxx	0x00 - 0x7f
                 SetAsInteger(lvByte);
             }else if ((lvByte >= 0x80) && (lvByte <= 0x8F))
