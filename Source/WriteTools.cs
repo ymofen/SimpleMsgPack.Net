@@ -131,6 +131,15 @@ namespace SimpleMsgPack
                 ms.WriteByte(0xC2);
             }
         }
+
+
+        public static void WriteUInt64(Stream ms, UInt64 iVal)
+        {
+            ms.WriteByte(0xCF);
+            byte[] dataBytes = BitConverter.GetBytes(iVal);
+            ms.Write(BytesTools.SwapBytes(dataBytes), 0, 8);
+        }
+
         public static void WriteInteger(Stream ms, Int64 iVal)
         {
             if (iVal >=0)
@@ -154,9 +163,9 @@ namespace SimpleMsgPack
                     ms.Write(BytesTools.SwapInt32((Int32)iVal), 0, 4);
                 }
                 else
-                {  //UInt64
-                    ms.WriteByte(0xCF);
-                    ms.Write(BytesTools.SwapInt64(iVal), 0, 8);
+                {  //Int64
+                    ms.WriteByte(0xD3);
+                    ms.Write(BytesTools.SwapInt64(iVal), 0, 4);
                 }
             }else
             {  // <0

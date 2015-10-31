@@ -261,12 +261,36 @@ namespace SimpleMsgPack
             this.valueType = MsgPackType.UInt64;
         }
 
+        public UInt64 GetAsUInt64()
+        {
+            switch (this.valueType)
+            {
+                case MsgPackType.Integer:
+                    return Convert.ToUInt64((Int64)this.innerValue);
+                case MsgPackType.UInt64:
+                    return (UInt64)this.innerValue;
+                case MsgPackType.String:
+                    return UInt64.Parse(this.innerValue.ToString().Trim());
+                case MsgPackType.Float:
+                    return Convert.ToUInt64((Double)this.innerValue);
+                case MsgPackType.Single:
+                    return Convert.ToUInt64((Single)this.innerValue);
+                case MsgPackType.DateTime:
+                    return Convert.ToUInt64((DateTime)this.innerValue);
+                default:
+                    return 0;
+            }
+
+        }
+
         public Int64 GetAsInteger()
         {
-            switch(this.valueType)
+             switch (this.valueType)
             {
                 case MsgPackType.Integer:
                     return (Int64)this.innerValue;
+                case MsgPackType.UInt64:
+                    return Convert.ToInt64((Int64)this.innerValue);
                 case MsgPackType.String:
                     return Int64.Parse(this.innerValue.ToString().Trim());
                 case MsgPackType.Float:
@@ -816,6 +840,9 @@ namespace SimpleMsgPack
                     break;
                 case MsgPackType.Integer:
                     WriteTools.WriteInteger(ms, (Int64)this.innerValue);
+                    break;
+                case MsgPackType.UInt64:
+                    WriteTools.WriteUInt64(ms, (UInt64)this.innerValue);
                     break;
                 case MsgPackType.Boolean:
                     WriteTools.WriteBoolean(ms, (Boolean)this.innerValue);
