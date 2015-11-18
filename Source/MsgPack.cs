@@ -216,7 +216,7 @@ namespace SimpleMsgPack
             }
         }
 
-        private void WirteArray(Stream ms)
+        private void WriteArray(Stream ms)
         {
             byte b;
             byte[] lenBytes;
@@ -863,7 +863,7 @@ namespace SimpleMsgPack
                     WriteMap(ms);
                     break;
                 case MsgPackType.Array:
-                    WirteArray(ms);
+                    WriteArray(ms);
                     break;
                  default:
                     WriteTools.WriteNull(ms);
