@@ -165,7 +165,7 @@ namespace SimpleMsgPack
                 else
                 {  //Int64
                     ms.WriteByte(0xD3);
-                    ms.Write(BytesTools.SwapInt64(iVal), 0, 4);
+                    ms.Write(BytesTools.SwapInt64(iVal), 0, 8);
                 }
             }else
             {  // <0
